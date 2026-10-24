@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { supabase } from "../polls/[id]/lib/supabase";
+import { supabase } from "../../polls/[id]/lib/supabase";
 
 export default function UpdatePasswordPage() {
   const [password, setPassword] = useState("");
@@ -30,8 +30,10 @@ export default function UpdatePasswordPage() {
     setLoading(true);
 
     try {
-      const { data: { session }, error: sessionError } =
-        await supabase.auth.getSession();
+      const {
+        data: { session },
+        error: sessionError,
+      } = await supabase.auth.getSession();
 
       if (sessionError || !session) {
         setError(
@@ -72,7 +74,10 @@ export default function UpdatePasswordPage() {
 
         <form onSubmit={handleUpdate} className="space-y-4">
           <div>
-            <label htmlFor="password" className="mb-1 block text-sm font-medium">
+            <label
+              htmlFor="password"
+              className="mb-1 block text-sm font-medium"
+            >
               New password
             </label>
             <input
@@ -129,7 +134,10 @@ export default function UpdatePasswordPage() {
         </form>
 
         <p className="mt-6 text-center text-sm text-gray-600">
-          <Link href="/login" className="font-semibold text-blue-600 hover:underline">
+          <Link
+            href="/login"
+            className="font-semibold text-blue-600 hover:underline"
+          >
             Return to sign in
           </Link>
         </p>
